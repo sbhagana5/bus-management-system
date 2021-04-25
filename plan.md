@@ -11,3 +11,7 @@
 ->seat confirmation
 	-seat left details to vendor id
 	-booking confirmed details to customer id
+
+       -----modules
+       --> for login => passport
+       
