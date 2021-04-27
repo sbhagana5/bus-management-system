@@ -43,7 +43,9 @@ server.get("/login",(req,res)=>{
     res.render('login')
 })
 server.get('/home',(req,res)=>{
-    res.render("home") 
+    res.render("home",{
+        name:req.session.passport.user.fname
+    }) 
 })
 server.post('/login',passport.authenticate('local-signin',{
     successRedirect:"/verify",
@@ -108,16 +110,11 @@ server.post('/bus',async(request,response)=>{
 server.get("/view",async(req,res)=>{
 email=req.session.passport.user.email
 const result=await findBus(email)   
-console.log(result[2])
-var temp;
-for(i=0;i<result.length-1;i++){
-    console.log("result["+i+"] :",result[i])
-   
 
-}
 res.render("vendor",{
     buses:result,
-    message:""
+    message:"",
+    name:req.session.passport.user.fname
 })
 })
 server.get("/search",async(req,res)=>{
