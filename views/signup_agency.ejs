@@ -22,11 +22,11 @@
 
   <div class="card">
     <div class="card-body register-card-body">
-      <p class="login-box-msg">Register a new membership</p>
+      <p class="login-box-msg">Register a new Agency</p>
 
-      <form action="/signup" name="signup" method="post">
+      <form action="/register_agency" name="signup" method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="fname" placeholder="First name">
+          <input type="text" class="form-control" name="Aname" placeholder="Enter Agency name">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="Lname" placeholder="last name">
+          <input type="text" class="form-control" name="Oname" placeholder="Enter  Owner name">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -42,13 +42,21 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="email" class="form-control"name="email" placeholder="Email">
+          <input type="email" class="form-control"name="email" placeholder="Enter Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
           </div>
         </div>
+        <div class="input-group mb-3">
+            <input type="tel" class="form-control"name="contact" placeholder="Enter contact Number">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
         <div class="input-group mb-3">
           <input type="password" class="form-control" name="password"placeholder="Password">
           <div class="input-group-append">
@@ -58,14 +66,14 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control"name="pass" placeholder="Retype password">
+          <input type="password" class="form-control"name="pass" placeholder="Confirm password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
-        <div >
+        <div class="row align-items-end">
 
           <!-- /.col -->
           <div class="offset-md-2 col-8 ">
@@ -73,7 +81,6 @@
           </div>
           <!-- /.col -->
         </div>
-
       </form>
 
       <a href="/login" class="text-center">Already a user?</a>

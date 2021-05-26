@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RED BUS| Start your jouney Now</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/static/plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/static/css/adminlte.min.css">
+<style>
+    input{
+margin: 10px;
+    
+    }
+    
+</style>
+</head>
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+   
+<!-- Header -->
+<%- include('partials/header')%>
+
+<!-- Side bar -->
+<%- include('partials/navbar')%>
+    
+    <!-- Page Body -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6" style="text-align: center; text-decoration: underline;">
+              
+              </div>
+       
+                  
+            </div>
+          </div><!-- /.container-fluid -->
+        </section>
+        <h2>Enter New  Crew Member Details:</h2>
+        <!-- Main content -->
+        <div class="card">
+          <div class="card-header form-group" >
+            <form action="/submit/<%= id  %>"  method="post" >   
+                <input type="text" name="lname" class="form-control" placeholder="last name">
+                <input type="text" name ="fname" class="form-control" placeholder="first name">
+                <input type="tel" name="contact"class="form-control" placeholder="contact">
+                <input type="email" name="email"class="form-control" placeholder="enter email">
+                <input type="date" name="birthDate" placeholder="bith date" >
+                <div class="col-sm-6">
+                    <input type="checkbox"  name="position" value="conductor">
+                    <label >conductor</label>
+                    <input type="checkbox"  name="position" value="driver">
+                    <label >driver</label>
+                   
+                </div>
+                <button type="submit" class="btn btn-primary" >submit</button>
+                </form>
+              </div>
+        </div>
+        <!-- /.content -->
+      </div>
+<%- include('partials/footer')%>
+</div>
+<!-- jQuery -->
+<script src="/static/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/static/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="/static/js/demo.js"></script>
+
+</body>
+</html>

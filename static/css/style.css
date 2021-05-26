@@ -1,0 +1,23 @@
+
+
+
+.links{
+    margin: 20px;
+    margin-bottom: 20px;
+ margin-top: 30px;
+ text-align: center;
+ font-size: 20px;
+ padding: 5px 20px  5px 20px;
+}
+ 
+
+.links a{
+
+    font-size: larger;
+    transition: all 0.2s  ease-in;
+} 
+
+.links a:hover{
+    margin: 0;
+    font-size: 25px;
+}

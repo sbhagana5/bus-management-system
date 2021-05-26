@@ -24,6 +24,9 @@ const bus=mongoose.model("Bus",{
     email:{
         type:String
     },
+    busNumber:{
+        type:String
+    },
     conditioner:{
         type:String
     },
@@ -33,13 +36,62 @@ const bus=mongoose.model("Bus",{
     to:{
         type:String
     },
-    time:{
-        type:Date
+    type:{
+        type:String
     },
-    seats:{
-        type:Number
-    }
 
+})  
+const agency = mongoose.model("Agency",{
+    email:{
+        type:String
+    },
+    Aname:{
+        type:String
+    },
+    Oname:{
+        type:String
+    },
+    contact:{
+        type:Number
+    },
+    createdAt:{
+        type:String
+    },
+    modifyAt:{
+        type:String
+    },
+    currently:{
+        type:String
+    },
+    password:{
+        type:String
+    }
+})
+const driver =mongoose.model("Driver",{
+    sr_number:{
+        type:Number
+    },
+    busId:{
+        type:String
+    },
+    lname:{
+        type:String
+    },
+    fname:{
+        type:String
+    },
+    contact:{
+        type:Number
+    },
+    email:{
+        type:String
+    },
+    birthDate:{
+        type:String
+    },
+    position:{
+        type:String
+    }
 })
 const insert=(fname,lname,email,password,roll)=>{
     const me =new user({
@@ -47,7 +99,7 @@ const insert=(fname,lname,email,password,roll)=>{
         lname,
         email,
         password,
-        roll
+        roll:'customer'
     })
     let use;
 
@@ -56,14 +108,14 @@ const insert=(fname,lname,email,password,roll)=>{
     })  
     return use;
 }
-const insertBus=(email,conditioner,from,to,time,seats)=>{
+const insertBus=(email,busNumber,conditioner,from,to,type)=>{
     const me=new bus({
         email,
+        busNumber,
         conditioner,
         from,
         to,
-        time,
-        seats
+        type
 
     })
 
@@ -91,16 +143,82 @@ const find= (email)=>{
          }
      })
  }
+ const findBusWithId=(id)=>{
+
+    return   bus.findById(id,(err,result)=>{
+        if (err) {
+            return console.log(err)
+        }
+        else {
+            // console.log("result in busId",result)
+            return result;
+        }
+    })
+ }
  const customerSearch=async(from ,to)=>{
-     console.log("from:",from)
-     console.log("to:",to)
+     
    return  await bus.find({from,to},(err,result)=>{
          if (err) {
              return console.log(err)
          } else {
-             console.log("result:::",result)
              return result
          }
      })
  }
-module.exports={user,insert,find,insertBus,findBus,customerSearch}
+ const insertAgency = (email,Aname,Oname,contact,createdAt,modifyDate,currently,password)=>{
+     const me =new agency({
+        email,Aname,Oname,contact,createdAt,modifyDate,currently,password
+     })
+     let use;
+     me.save().then(use=me).catch((err)=>{
+        console.log("error:::",err)
+     })
+     return use;
+ }
+const findAgency =(email)=>{
+    return agency.findOne({email},(err,res)=>{
+        if (err) {
+            return console.log(err);
+        } else {
+            return res;
+        }
+    })
+}
+const insertDriver =async(busId,detail)=>{
+    const result=await driver.find({busId})
+    console.log("result length::",result.length)
+    const count= result.length+1001
+const me = new driver({
+    sr_number:count,
+    busId,
+    lname:detail.lname,
+    fname:detail.fname,
+    contact:detail.contact,
+    email:detail.email,
+    birthDate:detail.birthDate,
+    position:detail.position
+
+})
+let use
+me.save().then(use=me).catch((err)=>{
+    console.log("error",err)
+})
+return use;
+}
+const searchDriver=async (busId)=>{
+    return  await driver.find({busId},(err,res)=>{
+        if (err) {
+            return err
+        } else {
+            return res
+        }
+    })
+
+}
+const model= {
+    user,
+    agency,
+    bus
+}
+module.exports={model,insert,find,insertBus,findBus,customerSearch,insertAgency,findAgency,findBusWithId,insertDriver,searchDriver}
+

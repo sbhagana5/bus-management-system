@@ -16,7 +16,56 @@
 <!-- Site wrapper -->
 <div class="wrapper">
     <%- include('partials/header')%>
-    <%- include('partials/navbar')%>
+    <!-- Side bar -->
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="#" class="brand-link">
+      <img src="/static/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+          style="opacity: .8">
+      <span class="brand-text font-weight-light">Red Bus</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+          <div class="image">
+              <img src="/static/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+              <a href="#" class="d-block"><%= name %></a>
+          </div>
+      </div>
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+              <!-- Add icons to the links using the .nav-icon class
+             with font-awesome or any other icon font library -->
+
+
+              <li class="nav-item">
+                  <a href="/vendor" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Home</p>
+                  </a>
+              </li>
+                  </li>
+                  
+                  <!-- <li class="nav-item d-none d-sm-inline-block">
+                      
+                      <a href="#" class="nav-link">Register New Bus</a>
+                  </li>
+                  <li class="nav-item d-none d-sm-inline-block">
+                      <a href="#" class="nav-link">Check Your Buses</a>
+                  </li> -->
+              
+      </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>
    
    
     
@@ -27,7 +76,8 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Hello,<%= name%></h1>
+               
+
               </div>
               </div>
           </div><!-- /.container-fluid -->
@@ -37,30 +87,12 @@
         <section class="content">
     
           <!-- Default box -->
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Title</h3>
-    
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-            <div class="card-body">
-              Start creating your amazing application!
-            </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-              Footer
-            </div>
-            <!-- /.card-footer-->
-          </div>
-          <!-- /.card -->
-    
+          <ul>
+            <li><p style="font-size: 20px;"><a href="#"><span class="text-primary">RED BUS</span> </a>is the platform where you can register your buses as an agency and can book the tickets for traveling as well. </p>
+            </li>
+            <li> We are working on cusotmer side .</li>
+            <li>If you wish, Please visit our <span class="text-primary"><a href="/register_agency">Agency side </a> </span></li>
+          </ul>
         </section>
         <!-- /.content -->
       </div>

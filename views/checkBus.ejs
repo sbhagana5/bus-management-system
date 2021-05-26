@@ -16,9 +16,8 @@
 <!-- Site wrapper -->
 <div class="wrapper">
     <%- include('partials/header')%>
-    <!-- Side bar -->   
     <%- include('partials/navbar')%>
-
+   
    
     
     <!-- Page Body -->
@@ -28,8 +27,9 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Welcome !</h1>
+                <h1 id="tip"> Your Buses:-</h1>
               </div>
+              
             </div>
           </div><!-- /.container-fluid -->
         </section>
@@ -38,28 +38,53 @@
         <section class="content">
     
           <!-- Default box -->
-          
-            <div class="card-body">
-              <ul>
-                <li><p style="font-size: 20px;"><a href="#"><span class="text-primary">RED BUS</span> </a>is the platform where you can register your buses as an agency and can book the tickets for traveling as well. </p>
-                </li>
-              <li><p style="font-size: 20px;">You can register your bus by clicking on <span class="text-primary"><a href="#"> REGISTER NEW BUS</a></span>.</p></li>
-            <li><p style="font-size: 20px;"> You can check your registered bus by clicking on <a href="#"><span class="text-primary"> CHECK YOUR BUS</span></a>.</p></li>  
-            </ul>
-            </div>
+          <div class="card">
+            <div class="card-header">
+              <table class="table  table-bordered">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">From</th>
+                    <th scope="col">To</th>
+                    <th scope="col">conditioner</th>
+                  <th scope="col">Bus Number</th>
+                  <th scope="col">view</th>
+                  </tr>
+                  
+                </thead>
+              <tbody>
+                
+                <% for(var i=0; i < buses.length; i++ ) { %>
+                <% var det = buses[i]._id %>
+                <% console.log(det) %>  
+                <tr>
+                  <th scope="row"><%= i + 1 %></th>
+                  <td><%= buses[i].from %></td>
+                  <td><%= buses[i].to %></td>
+                  <td><%= buses[i].conditioner %></td>
+                  <td><%= buses[i].busNumber %></td>    
+                <td><a href='<%= "/middleware/" + buses[i]._id  %>'     ><i class="fas fa-edit edit"></i></a> </td> 
+                </tr>
+                <% } %>     
+              </tbody>
+            </table>
+           
+            
+
             <!-- /.card-body -->
-            <div class="card-footer">
-                       </div>
+          
+          </div>
+        </div>
             <!-- /.card-footer-->
           </div>
           <!-- /.card -->
-    
         </section>
         <!-- /.content -->
+        <%- include('partials/footer')%>
+
       </div>
 
 
-<%- include('partials/footer')%>
 
 </div>
 <!-- jQuery -->
@@ -70,5 +95,6 @@
 <script src="static/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="static/js/demo.js"></script>
+<script src="static/js/busDetails.js"></script>
 </body>
 </html>

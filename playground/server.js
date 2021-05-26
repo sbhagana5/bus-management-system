@@ -1,5 +1,5 @@
 const express = require("express")
-
+const mongoose =require("mongoose")
 // We use express to create an application object that represents our server
 const server = express()
 
@@ -12,10 +12,13 @@ server.get("/", (request, response) => {
     // the render function takes two arguments
     // 1. the file to look for in the views to use as the template
     // 2. an object of data to make available to the template
-    response.render("vendor", {
-        cheese: "gouda",
-        bread: "rye"
-    })
+    
+    mongoose.connect('mongodb://127.0.0.1:27017/redBusDb',{
+    useNewUrlParser:true,
+    useCreateIndex:true
+})
+    const user = mongoose.model('User')
+    response.send(user)
 })
 
 // Tell our server to start listening for requests on port 1985, my birth year 😆
