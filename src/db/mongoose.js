@@ -1,10 +1,8 @@
 const mongoose=require('mongoose')
-mongoose.connect(process.env.MONGODB_URL,{
-    useNewUrlParser:true,
-    useCreateIndex:true,
-    useUnifiedTopology: true
-})
-const user=mongoose.model("User",{
+const conn = mongoose.createConnection(process.env.MONGODB_URI);
+
+
+const user=conn.model("User",{
     fname:{
         type:String
     },
@@ -21,7 +19,7 @@ const user=mongoose.model("User",{
         type:String
     }
 })
-const bus=mongoose.model("Bus",{
+const bus=conn.model("Bus",{
     email:{
         type:String
     },
@@ -42,7 +40,7 @@ const bus=mongoose.model("Bus",{
     },
 
 })  
-const agency = mongoose.model("Agency",{
+const agency = conn.model("Agency",{
     email:{
         type:String
     },
@@ -68,7 +66,7 @@ const agency = mongoose.model("Agency",{
         type:String
     }
 })
-const driver =mongoose.model("Driver",{
+const driver =conn.model("Driver",{
     sr_number:{
         type:Number
     },
