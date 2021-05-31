@@ -140,17 +140,21 @@ server.get("/customer",ensureLogin.ensureLoggedIn('/login'),(req,res)=>{
 })
 //-----------------------showing bus details--------------------
 server.get("/middleware/:id",ensureLogin.ensureLoggedIn('/login'),async(req,res)=>{
-    const busId = req.params["id"]
-    // console.log("busId", busId)
-    // console.log("result:",result)
-    const drivers=await searchDriver(busId)
-    req.session.drivers=drivers
-    req.session.driverId=busId
-    req.session.save()
-    // console.log("req.session::",req.session.driverId)
-    res.redirect("/view_bus")
+    try {
+        const busId = req.params["id"]
+        const drivers=await searchDriver(busId)
+        req.session.drivers=drivers
+        req.session.driverId=busId
+        req.session.save()
+        // console.log("req.session::",req.session.driverId)
+        res.redirect("/view_bus")    
+    } catch (error) {
+        console.log(error)
+    }
+    
 })
 server.get("/view_bus",ensureLogin.ensureLoggedIn('/login'),async(req ,res)=>{
+   try{
     const driverId=req.session.driverId
     const drivers= req.session.drivers
     console.log("driverID,",driverId)
@@ -162,31 +166,41 @@ server.get("/view_bus",ensureLogin.ensureLoggedIn('/login'),async(req ,res)=>{
         to:result.to,
         result:drivers
     })
+   }catch(err){
+console.log(err);
+   }
+   
 })
 ///////---------------------- register bus--------------- /////////////////////////
 server.post('/bus',ensureLogin.ensureLoggedIn('/login'),async(req,response)=>{
-     bus=req.body;
-    console.log("bus details:",bus)
-   var  email=req.session.passport.user.email;
-   await insertBus(email,bus.busNumber,bus.conditioner,bus.from,bus.to,bus.type)
-  const message=`<h2>Your Bus has been successfully registered to <span class='text-primary'> RED BUS </span>.
-  <h4>Bus Number:${bus.busNumber}</h4>
-  <h4>A/C Type:${bus.conditioner}</h4>
-  <h4>From:${bus.from}</h4>
-  <h4>To:${bus.to}</h4>
-  <h4>Bus Type:${bus.type}</h4>`
-
-   val(email,message) 
-   response.render('newBus', {
-        name:req.session.passport.user.Aname,
-        message: "bus saved successfully.",
-       
-        
-    })
+    try {
+        bus=req.body;
+        console.log("bus details:",bus)
+       var  email=req.session.passport.user.email;
+       await insertBus(email,bus.busNumber,bus.conditioner,bus.from,bus.to,bus.type)
+      const message=`<h2>Your Bus has been successfully registered to <span class='text-primary'> RED BUS </span>.
+      <h4>Bus Number:${bus.busNumber}</h4>
+      <h4>A/C Type:${bus.conditioner}</h4>
+      <h4>From:${bus.from}</h4>
+      <h4>To:${bus.to}</h4>
+      <h4>Bus Type:${bus.type}</h4>`
+    
+       val(email,message) 
+       response.render('newBus', {
+            name:req.session.passport.user.Aname,
+            message: "bus saved successfully.",
+           
+            
+        })    
+    } catch (error) {
+        console.log(error)
+    }
+    
 })
 ////////////////-------------------- check user buses--------------------------------
 server.get("/view",ensureLogin.ensureLoggedIn('/login'),async(req,res)=>{
-email=req.session.passport.user.email
+try {
+    email=req.session.passport.user.email
 console.log("req.ses::",req.session.driver)
 const result=await findBus(email)  
 
@@ -195,21 +209,26 @@ res.render("checkBus",{
     message:"",
     name:req.session.passport.user.Aname
 })
+} catch (error) {
+    console.log(error)
+}
 })
 
 
 ///////------------------ customer seach bus-----------------------
 server.get("/search",ensureLogin.ensureLoggedIn('/login'),async(req,res)=>{
     // console.log("bhai check krte hai::",req.query)
+try {
     bus=await customerSearch(req.query.from,req.query.to)
-    // console.log("yaha result check krte hai::",bus)
-    
-   
+    // console.log("yaha result check krte hai::",bus) 
         res.render("customer",{
             name:req.session.passport.user.fname,
            result:""
         })
    
+} catch (error) {
+    console.log(error)
+}
    
 })
 //////-----------------register bus interface handller
@@ -229,6 +248,8 @@ server.get("/register_driver",ensureLogin.ensureLoggedIn('/login'),(req,res)=>{
     })
 })
 server.post("/submit/:id",ensureLogin.ensureLoggedIn('/login'),async(req,res)=>{
+    try {
+        
     const id = req.params["id"]
     console.log("submit id",id)
     const detail = req.body
@@ -247,6 +268,9 @@ console.log("result::",result)
     }
 
 
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 
