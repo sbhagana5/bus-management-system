@@ -21,7 +21,7 @@ const { log } = require('console')
 initializePassport(passport,model,insert,find,insertAgency,findAgency)
 server.use("/static",express.static('./static'))
 
-port=process.env.PORT || 5050
+port=process.env.PORT 
 server.set('view engine','ejs')
     server.use(express.urlencoded({extended:true}))
     server.use(flash())
@@ -265,7 +265,7 @@ function   isLoggedIn(req, res, next) {
    
   }
 server.listen(port,()=>{
-    console.log("Server is on port 5050")
+    console.log("Server is on port ",port)
 })
 
 
