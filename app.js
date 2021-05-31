@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV!=='production') {
-    require('dotenv').config()
-}
+
 const ensureLogin =require('connect-ensure-login')
 const{ val }= require('./emailApi')
 const bodyParser=require("body-parser")
@@ -13,7 +11,9 @@ const initializePassport=require('./passport/pass')
 const flash = require("express-flash")
 const session=require('express-session')
 const { render } = require('ejs')
-const path=require('path')
+
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, './.env') });
 const pass = require('./passport/pass')
 const { request } = require('express')
 const busDetails = require('./static/js/busDetails')
@@ -26,7 +26,7 @@ server.set('view engine','ejs')
     server.use(express.urlencoded({extended:true}))
     server.use(flash())
     server.use(session({
-        secret:'thesecret',
+        secret:process.env.secret,
         resave:false,
         saveUninitialized:false
     }))
